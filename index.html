@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="An interactive Islamic Knowledge Quiz App built using HTML, CSS, Bootstrap, and JavaScript."
+    />
+    <meta
+      name="keywords"
+      content="Islamic Quiz, Web Technology Project, HTML CSS JavaScript Quiz"
+    />
+    <meta name="author" content="Arham" />
+
+    <title>Islamic Knowledge Quiz</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Amiri&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-light">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+      <div class="container">
+        <!-- Logo / Title -->
+        <a class="navbar-brand fw-bold" href="#"> 🌙 Islamic Knowledge Quiz </a>
+
+        <!-- Mobile toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Menu Links -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="homeBtn">Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#aboutSection">About This Quiz</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#scoreSection">Scores</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container py-5">
+      <!-- WELCOME SCREEN -->
+      <div id="welcomeScreen">
+        <div class="text-center mb-5">
+          <h1
+            class="fw-bold move-left-right"
+            style="font-family: 'Amiri', serif"
+          >
+            Welcome to Islamic Knowledge Quiz
+          </h1>
+          <p class="text-muted">
+            Test your knowledge about Islam in a beautiful, modern quiz
+            experience.
+          </p>
+        </div>
+
+        <h4 class="text-center mb-3" style="font-family: 'Amiri', serif">
+          Choose a Category
+        </h4>
+
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="d-grid gap-3">
+              <button
+                class="btn btn-outline-success btn-lg shadow category-btn"
+                onclick="selectCategory('pillars')"
+              >
+                🕌 Pillars of Islam
+              </button>
+              <button
+                class="btn btn-outline-success btn-lg shadow category-btn"
+                onclick="selectCategory('prophets')"
+              >
+                👳‍♂️ Prophets in Islam
+              </button>
+              <button
+                class="btn btn-outline-success btn-lg shadow category-btn"
+                onclick="selectCategory('quran')"
+              >
+                📖 Quran Knowledge
+              </button>
+              <div class="text-center mt-4">
+                <button
+                  id="startQuizBtn"
+                  class="btn btn-success btn-lg d-none"
+                  onclick="startQuiz()"
+                >
+                  Start Quiz
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUIZ SCREEN -->
+      <div id="quizScreen" class="d-none">
+        <div class="card shadow-lg p-4">
+          <div class="d-flex justify-content-between mb-2">
+            <h5 id="categoryTitle" class="fw-bold text-success"></h5>
+            <span id="questionCounter" class="fw-bold"></span>
+          </div>
+
+          <div class="progress mb-4">
+            <div
+              id="progressBar"
+              class="progress-bar bg-success"
+              role="progressbar"
+            ></div>
+          </div>
+
+          <div id="timer" class="fw-bold mb-2 text-danger">Time Left: 10s</div>
+
+          <h4 id="questionText" class="mb-4"></h4>
+
+          <div id="optionsContainer" class="d-grid gap-3"></div>
+
+          <div id="explanationBox" class="alert alert-info mt-3 d-none"></div>
+
+          <button
+            id="nextBtn"
+            class="btn btn-success btn-lg mt-4 d-none"
+            onclick="nextQuestion()"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      <!-- RESULT SCREEN -->
+      <div id="resultScreen" class="d-none text-center">
+        <div class="card shadow-lg p-5">
+          <h2 class="text-success fw-bold mb-3">Quiz Completed!</h2>
+          <h4 id="finalScore" class="mb-4"></h4>
+          <hr />
+
+          <h4 class="mt-4 text-success fw-bold">Answer Summary</h4>
+
+          <div id="summaryContainer" class="mt-3 text-start"></div>
+
+          <div id="highScoreText" class="text-muted mb-3"></div>
+
+          <button class="btn btn-outline-success btn-lg" onclick="retryQuiz()">
+            Retry
+          </button>
+
+          <button class="btn btn-outline-success btn-lg" onclick="goHome()">
+            Choose Another Category
+          </button>
+        </div>
+      </div>
+
+      <!-- ABOUT SECTION -->
+      <div id="aboutSection" class="mt-5 d-none">
+        <div class="card p-4 shadow">
+          <h3 class="text-success fw-bold mb-3">About This Quiz</h3>
+          <p>
+            This Islamic Knowledge Quiz is created by<b>"ARHAM ASIF"</b> to help
+            learners test and improve their knowledge about Islam through
+            categories like Pillars of Islam, Prophets, and Quran Knowledge. The
+            quiz uses modern UI, instant feedback, and progress tracking for an
+            interactive experience.
+          </p>
+        </div>
+      </div>
+
+      <!-- SCORE SECTION -->
+      <div id="scoreSection" class="mt-5 d-none">
+        <div class="card p-4 shadow">
+          <h3 class="text-success fw-bold mb-3">Saved High Scores</h3>
+          <ul id="scoreList" class="list-group">
+            <!-- JS will fill this -->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Main JS -->
+    <script src="script.js"></script>
+  </body>
+</html>
