@@ -66,7 +66,7 @@ const questionBank = {
         "Zakat (Charity)",
         "Sawm (Fasting)",
       ],
-      correct: 3,
+      correct: 2,
       explanation:
         "Zakat and other charitable acts can be given in secret, and the obligation is fulfilled. Public display is not required for the validity of the pillar.",
     },
@@ -79,7 +79,7 @@ const questionBank = {
         "Hajj (Pilgrimage)",
         "Sawm (Fasting)",
       ],
-      correct: 3,
+      correct: 2,
       explanation:
         "All acts of worship require intention, but Hajj especially emphasizes niyyah because it involves a complex set of rites performed for Allah alone.",
     },
@@ -631,3 +631,4 @@ document
     quizScreen.classList.add("d-none");
     resultScreen.classList.add("d-none");
   });
+
