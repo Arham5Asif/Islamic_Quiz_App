@@ -5,6 +5,7 @@ body {
   font-family: "Poppins", sans-serif;
   background: url("image/Kabba.jpg") no-repeat center center fixed;
   background-size: cover;
+  padding-top: 50px; 
 }
 
 .card {
@@ -149,3 +150,4 @@ h4 {
     transform: translateY(0);
   }
 }
+
